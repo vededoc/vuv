@@ -85,6 +85,16 @@ cpack
 
 This generates `vuv-0.9.0-<system>.tar.gz` and `.zip` archives.
 
+## Examples
+
+Build and run the included example (TCP client/server with a timer):
+
+```sh
+cmake -S . -B build -DVUV_BUILD_EXAMPLES=ON
+cmake --build build
+./build/examples/vuv_tcp_echo_timer
+```
+
 ## License
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for details.

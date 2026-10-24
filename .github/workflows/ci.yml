@@ -18,7 +18,7 @@ jobs:
           sudo apt-get install -y libuv1-dev cmake g++
 
       - name: Configure
-        run: cmake -S . -B build -DVUV_BUILD_TESTS=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        run: cmake -S . -B build -DVUV_BUILD_TESTS=ON -DVUV_BUILD_EXAMPLES=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Build
         run: cmake --build build

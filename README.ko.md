@@ -83,6 +83,16 @@ cpack
 
 `vuv-0.9.0-<system>.tar.gz` 및 `.zip` 아카이브가 생성됩니다.
 
+## 예제
+
+포함된 예제(TCP 클라이언트/서버 + 타이머)를 빌드하고 실행하려면:
+
+```sh
+cmake -S . -B build -DVUV_BUILD_EXAMPLES=ON
+cmake --build build
+./build/examples/vuv_tcp_echo_timer
+```
+
 ## 라이선스
 
 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 를 참고하세요.

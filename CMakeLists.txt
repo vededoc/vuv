@@ -22,10 +22,15 @@ target_include_directories(vuv PUBLIC
 target_link_libraries(vuv PUBLIC uv pthread dl)
 
 option(VUV_BUILD_TESTS "Build vuv tests" OFF)
+option(VUV_BUILD_EXAMPLES "Build vuv examples" OFF)
 
 if(VUV_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
+endif()
+
+if(VUV_BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
 
 # ---- install rules ----
