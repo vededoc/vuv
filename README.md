@@ -1,5 +1,7 @@
 # vuv
 
+![CI](https://github.com/vededoc/vuv/actions/workflows/ci.yml/badge.svg)
+
 A modern C++20 wrapper around [libuv](https://libuv.org/).
 
 `vuv` exposes libuv's event loop, handles, and requests through a small,
