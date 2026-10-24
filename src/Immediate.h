@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <functional>
 #include <list>
-#include "Idle.h"
+#include "UvIdle.h"
 
 namespace vuv {
 
@@ -29,7 +29,7 @@ namespace vuv {
 			ImmdCb cb;
 		};
 		ImmdCb _cb;
-		Idle _idle;
+		UvIdle _idle;
 		uint32_t _hSeed;
 		std::list<Immd> _cbs;
 		std::list<Immd> _tmpCbs;

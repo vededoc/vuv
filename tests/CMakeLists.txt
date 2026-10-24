@@ -14,7 +14,7 @@ set(VUV_TEST_SOURCES
     smoke_test.cpp
     test_loop.cpp
     test_bufstore.cpp
-    test_idle_immediate.cpp
+    test_uv_idle_immediate.cpp
     test_async.cpp
     test_timer.cpp
     test_check_prepare.cpp

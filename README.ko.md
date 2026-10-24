@@ -12,7 +12,7 @@
 
 - 주요 libuv 프리미티브에 대한 래퍼: `Loop`, `UvTcp`, `UvUdp`, `UvTimer`,
   `UvCheck`, `UvPrepare`, `UvPoll`, `UvSignal`, `UvPipe`, `UvTty`,
-  `UvStream`, `UvAsync`, `Idle`, `Immediate`
+  `UvStream`, `UvAsync`, `UvIdle`, `Immediate`
 - DNS 헬퍼: `DNSResolver`, `UvGetAddrInfo`
 - `UvSpawn` 을 통한 프로세스 실행
 - 유틸리티 헬퍼: `UvBufStore`, `HandleSender` / `HandleReceiver`

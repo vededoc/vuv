@@ -14,7 +14,7 @@ when you need them.
 
 - RAII-friendly wrappers for common libuv primitives: `Loop`, `UvTcp`,
   `UvUdp`, `UvTimer`, `UvCheck`, `UvPrepare`, `UvPoll`, `UvSignal`,
-  `UvPipe`, `UvTty`, `UvStream`, `UvAsync`, `Idle`, `Immediate`
+  `UvPipe`, `UvTty`, `UvStream`, `UvAsync`, `UvIdle`, `Immediate`
 - DNS helpers: `DNSResolver`, `UvGetAddrInfo`
 - Process spawning via `UvSpawn`
 - Utility helpers: `UvBufStore`, `HandleSender` / `HandleReceiver`

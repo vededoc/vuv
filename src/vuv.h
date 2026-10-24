@@ -14,4 +14,5 @@
 #include "UvTty.h"
 #include "UvSpawn.h"
 #include "UvSignal.h"
+#include "UvIdle.h"
 #include "Immediate.h"
