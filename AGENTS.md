@@ -1,4 +1,42 @@
-# vuv ( libuv c++ wrapper )
+# vuv (libuv C++ wrapper)
+
+## Project overview
+
+`vuv` is a C++20 wrapper around libuv. Source lives in `src/` (`*.cpp`/`*.h`),
+and the public entry point is `src/vuv.h`. The project builds a static library
+named `vuv` with CMake.
+
+## Build
+
+```sh
+cmake -S . -B build
+cmake --build build
+```
+
+Or use the OpenCode command `/build`.
+
+## Tests
+
+There is currently no committed test suite. When tests are added, run them with:
+
+```sh
+ctest --test-dir build --output-on-failure
+```
+
+Or use the OpenCode command `/test`.
+
+## Conventions
+
+- C++ standard: C++20.
+- Warnings are errors for missing return values (`-Werror=return-type`).
+- Public headers are in `src/` and included as `#include "..."`.
+- Link dependencies: `uv`, `pthread`, `dl`.
+
+## OpenCode harness
+
+Project-level OpenCode configuration is in `.opencode/opencode.jsonc`.
+Custom agents and commands are under `.opencode/agents/` and `.opencode/commands/`.
+A read-only `reviewer` subagent is available for code review.
 
 ## graphify
 
@@ -13,3 +51,4 @@ Rules:
 - Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
 - After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
 - A committed graphify-out/graph.json is rewritten whole on every build, so a large diff to it in a pull request is expected. Do not flag it as churn or suggest skipping the graph rebuild or its hooks.
+- `graphify-out/` is gitignored. In a fresh clone, run `graphify .` once to generate it before relying on graph-based navigation.

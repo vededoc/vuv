@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "watcher": {
+    "ignore": [
+      "cmake-build-*/**",
+      "build/**",
+      "graphify-out/**",
+      ".idea/**"
+    ]
+  },
+  "formatter": true,
+  "instructions": [
+    "AGENTS.md"
+  ]
+}

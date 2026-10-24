@@ -1,0 +1,7 @@
+CompileFlags:
+  Add:
+    - -Isrc
+  Remove:
+    - -Werror=return-type
+Index:
+  Background: Build
