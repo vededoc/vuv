@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+# libuv is a system dependency; consumers must have it installed.
+# find_dependency(LibUV) is not standard, so we rely on the system library.
+
+include("${CMAKE_CURRENT_LIST_DIR}/vuvTargets.cmake")
+
+check_required_components(vuv)
