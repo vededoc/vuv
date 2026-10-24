@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(vuv)
+project(vuv VERSION 0.9.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -53,10 +53,19 @@ configure_package_config_file(
 
 write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/vuvConfigVersion.cmake
-    VERSION 1.0.0
+    VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/vuvConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/vuvConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/vuv)
+
+# ---- CPack packaging ----
+set(CPACK_PACKAGE_NAME "vuv")
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A modern C++20 wrapper around libuv")
+set(CPACK_PACKAGE_VENDOR "vededoc")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set(CPACK_GENERATOR "TGZ;ZIP")
+include(CPack)
