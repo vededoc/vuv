@@ -1,23 +1,23 @@
 #include <cassert>
 #include "Loop.h"
 
-#include "Idle.h"
+#include "UvIdle.h"
 #include "uvcpplog.h"
 
 namespace vuv {
 
-	Idle::Idle(): _loop(nullptr), _uvh(nullptr), _cb([](){}), _started(false) {
+	UvIdle::UvIdle(): _loop(nullptr), _uvh(nullptr), _cb([](){}), _started(false) {
 
 	}
 
-	Idle::~Idle() {
+	UvIdle::~UvIdle() {
 //		assert(!_uvh);
 		if(_uvh) {
 			deinit();
 		}
 	}
 
-	int Idle::init() {
+	int UvIdle::init() {
 		if(_uvh) {
 			assert(0);
 			return -1;
@@ -30,7 +30,7 @@ namespace vuv {
 		return 0;
 	}
 
-	void Idle::deinit() {
+	void UvIdle::deinit() {
 		if(_uvh) {
 			_uvh->data = nullptr;
 			uv_close((uv_handle_t*)_uvh, +[](uv_handle_t* handle) {
@@ -41,7 +41,7 @@ namespace vuv {
 		}
 	}
 
-	void Idle::start() {
+	void UvIdle::start() {
 		if(_started) {
 			return;
 		}
@@ -52,25 +52,25 @@ namespace vuv {
 		// uv_idle_start 는 항상 성공
 		uv_idle_start(_uvh, +[](uv_idle_t* idle) {
 			if(idle->data) {
-				((Idle *) idle->data)->_cb();
+				((UvIdle *) idle->data)->_cb();
 			}
 		});
 		_started = true;
 		return;
 	}
 
-	void Idle::stop() {
+	void UvIdle::stop() {
 		if(_uvh) {
 			uv_idle_stop(_uvh);
 			_started = false;
 		}
 	}
 
-	void Idle::setOn(std::function<void()> cb) {
+	void UvIdle::setOn(std::function<void()> cb) {
 		_cb = cb;
 	}
 
-	uv_handle_t *Idle::getHandle() {
+	uv_handle_t *UvIdle::getHandle() {
 		return (uv_handle_t *)_uvh;
 	}
 }

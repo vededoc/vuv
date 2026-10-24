@@ -4,9 +4,9 @@
 #include <uv.h>
 
 namespace vuv {
-	class Idle {
+	class UvIdle {
 	public:
-		Idle();
+		UvIdle();
 
 		int init();
 
@@ -20,7 +20,7 @@ namespace vuv {
 
 		uv_handle_t *getHandle();
 
-		virtual ~Idle();
+		virtual ~UvIdle();
 
 	private:
 		uv_loop_t *_loop;

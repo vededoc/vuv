@@ -16,9 +16,9 @@ static void runUntil(std::atomic<bool> &done, int maxIters = 100000) {
     }
 }
 
-TEST(IdleTest, CallbackInvoked) {
+TEST(UvIdleTest, CallbackInvoked) {
     Loop::Open(nullptr);
-    Idle idle;
+    UvIdle idle;
     std::atomic<bool> done{false};
     int count = 0;
     idle.init();
@@ -34,9 +34,9 @@ TEST(IdleTest, CallbackInvoked) {
     Loop::Close();
 }
 
-TEST(IdleTest, StopPreventsCallback) {
+TEST(UvIdleTest, StopPreventsCallback) {
     Loop::Open(nullptr);
-    Idle idle;
+    UvIdle idle;
     int count = 0;
     idle.init();
     idle.setOn([&] { ++count; });
