@@ -1,0 +1,117 @@
+.TH VUV 7 "October 2026" "vuv 0.9.0" "vuv Manual"
+.SH NAME
+vuv \- modern C++20 wrapper around libuv
+.SH SYNOPSIS
+.nf
+#include <vuv/vuv.h>
+.fi
+.SH DESCRIPTION
+.B vuv
+exposes libuv's event loop, handles, and requests through a small,
+RAII-friendly C++ API while keeping the underlying
+.BR uv_* types
+accessible when needed.
+.PP
+The per-thread singleton
+.B vuv::Loop
+owns the event loop. Typical lifecycle:
+.PP
+.RS
+Loop::Open() -> init/start/connect/... -> Loop::Run([mode]) -> stop()/close() -> Loop::Close()
+.RE
+.PP
+Key handle families:
+.TP
+.B Streams
+.BR UvStream " (base), " UvTcp ", " UvPipe ", " UvTty
+.TP
+.B Datagrams
+.B UvUdp
+.TP
+.B Polling
+.BR UvPoll ", " UvIdle ", " UvPrepare ", " UvCheck
+.TP
+.B Timing / deferred
+.BR UvTimer ", " Immediate
+.TP
+.B Cross-thread
+.B UvAsync
+(uv_async_send; callable from any thread)
+.TP
+.B Signals
+.B UvSignal
+.TP
+.B Processes
+.B UvSpawn
+.TP
+.B DNS
+.BR DNSResolver ", " UvGetAddrInfo
+.TP
+.B Utilities
+.BR UvBufStore ", " HandleSender ", " HandleReceiver
+.SH BUILD
+.nf
+cmake -S . -B build -DVUV_BUILD_TESTS=ON
+cmake --build build
+ctest --test-dir build --output-on-failure
+.fi
+.SH INSTALL
+.nf
+cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake --build build
+cmake --install build
+.fi
+.PP
+Installed files:
+.TP
+Library
+<prefix>/lib/libvuv.a
+.TP
+Headers
+<prefix>/include/vuv/*.h
+.TP
+CMake config
+<prefix>/lib/cmake/vuv/
+.TP
+Full manual (Markdown)
+<prefix>/share/doc/vuv/vuv-manual.en.md
+.TP
+This page
+<prefix>/share/man/man7/vuv.7
+.SH QUICK START
+.nf
+#include <vuv/vuv.h>
+
+int main() {
+    vuv::Loop::Open();
+    // ... set up handles ...
+    vuv::Loop::Run();
+    vuv::Loop::Close();
+    return 0;
+}
+.fi
+.PP
+Downstream CMake:
+.nf
+find_package(vuv 0.9 CONFIG REQUIRED)
+target_link_libraries(your_target PRIVATE vuv::vuv)
+.fi
+.SH FILES
+.TP
+.I docs/vuv-manual.en.md
+Full English manual (source of this page).
+.TP
+.I examples/tcp_echo_timer.cpp
+TCP client/server with a periodic timer.
+.SH SEE ALSO
+.BR uv_run (3),
+.BR uv_tcp_init (3),
+.BR uv_udp_init (3),
+.BR uv_timer_start (3),
+.BR uv_spawn (3),
+.BR cpack (1),
+.BR cmake (1)
+.PP
+Full manual: <prefix>/share/doc/vuv/vuv-manual.en.md
+.br
+Project README: README.md

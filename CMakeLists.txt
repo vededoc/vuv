@@ -66,6 +66,15 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/vuvConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/vuv)
 
+# ---- Manual / documentation ----
+install(FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/docs/vuv-manual.en.md
+    ${CMAKE_CURRENT_SOURCE_DIR}/docs/vuv-manual.ko.md
+    DESTINATION ${CMAKE_INSTALL_DOCDIR})
+install(FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/docs/vuv.7
+    DESTINATION ${CMAKE_INSTALL_MANDIR}/man7)
+
 # ---- CPack packaging ----
 set(CPACK_PACKAGE_NAME "vuv")
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
